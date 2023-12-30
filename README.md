@@ -1,39 +1,27 @@
-Apache SkyWalking Java Agent
-==========
+# Monet SkyWalking Java Agent
+## v8.9.0
 
-<img src="http://skywalking.apache.org/assets/logo.svg" alt="Sky Walking logo" height="90px" align="right" />
+## 自定义插件
+### monet-log-plugin
+- 适配 Logback 链路
+- 适配 Log4j2 链路
+- 适配 ```ThreadPoolExecutor.execute``` Lambda 表达式
+- 适配 ```ThreadPoolExecutor.submit``` Lambda 表达式
 
+## 构建
 
-[![GitHub stars](https://img.shields.io/github/stars/apache/skywalking-java.svg?style=for-the-badge&label=Stars&logo=github)](https://github.com/apache/skywalking-java)
-[![Twitter Follow](https://img.shields.io/twitter/follow/asfskywalking.svg?style=for-the-badge&label=Follow&logo=twitter)](https://twitter.com/AsfSkyWalking)
+### 中文社区指引
+> https://skyapm.github.io/document-cn-translation-of-skywalking/zh/8.0.0/guides/How-to-build.html#
+### Apache 发行版本源代码构建
+```
+# 构建命令
+./mvnw clean package -DskipTests
+```
 
-[![Maven Central](https://img.shields.io/maven-central/v/org.apache.skywalking/apm-agent.svg)](https://skywalking.apache.org/downloads/)
-[![CI](https://github.com/apache/skywalking-java/actions/workflows/ci.yaml/badge.svg)](https://github.com/apache/skywalking-java/actions/workflows/ci.yaml)
-
-SkyWalking-Java: The Java Agent for Apache SkyWalking, which provides the native tracing/metrics/logging abilities for Java projects.
-
-SkyWalking: an APM(application performance monitor) system, especially designed for microservices, cloud native and container-based (Docker and Kubernetes) architectures.
-
-# Documentation
-- [Official documentation](https://skywalking.apache.org/docs/#JavaAgent)
-
-# Downloads
-Please head to the [releases page](https://skywalking.apache.org/downloads/) to download a release of Apache SkyWalking.
-
-# Code of conduct
-This project adheres to the Contributor Covenant [code of conduct](https://www.apache.org/foundation/policies/conduct). By participating, you are expected to uphold this code.
-Please follow the [REPORTING GUIDELINES](https://www.apache.org/foundation/policies/conduct#reporting-guidelines) to report unacceptable behavior.
-
-# Live Demo
-Find the [demo](https://skywalking.apache.org/#demo) and [screenshots](https://skywalking.apache.org/#arch) on our website.
-
-
-# Contact Us
-* Mail list: **dev@skywalking.apache.org**. Mail to `dev-subscribe@skywalking.apache.org`, follow the reply to subscribe the mail list.
-* Send `Request to join SkyWalking slack` mail to the mail list(`dev@skywalking.apache.org`), we will invite you in.
-* Twitter, [ASFSkyWalking](https://twitter.com/ASFSkyWalking)
-* QQ Group: 901167865(Recommended), 392443393
-* [bilibili B站 视频](https://space.bilibili.com/390683219)
-
-# License
-[Apache 2.0 License.](LICENSE)
+## 跨线程
+- 适配 ```ThreadPoolExecutor.execute``` Lambda 表达式
+- 适配 ```ThreadPoolExecutor.submit``` Lambda 表达式
+### 使用方式
+1. 构建 ```skywalking-agent/```
+2. 移动 ```skywalking-agent/bootstrap-plugins/apm-jdk-threading-plugin-8.9.0.jar``` 至 ```skywalking-agent/plugins/apm-jdk-threading-plugin-8.9.0.jar```
+3. 服务启动命令 指定 ```-Dskywalking.plugin.jdkthreading.threading_class_prefixes=[YOUR_APPLICATION_ROOT_PACKAGE]```
